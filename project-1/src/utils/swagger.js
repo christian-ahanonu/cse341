@@ -6,7 +6,7 @@ const doc = {
         description: "Api serving a list of contacts",
     },
     host: "https://cse341-service-05oh.onrender.com",
-    schemes: "https",
+    schemes: ["https", "http"]
 };
 
 const outputFile = './swagger.json';

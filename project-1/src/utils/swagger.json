@@ -5,11 +5,11 @@
     "description": "Api serving a list of contacts",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "https://cse341-service-05oh.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/contacts": {
