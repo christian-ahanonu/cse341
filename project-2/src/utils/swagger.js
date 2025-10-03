@@ -5,7 +5,7 @@ const doc = {
         title: "Movies Api",
         description: "Api serving a list of movies and cinemas location",
     },
-    host: "https://cse341-service-05oh.onrender.com",
+    host: "https://cse341-service2.onrender.com",
     // host: "localhost:8080",
     schemes: ["http", "https"],
 };

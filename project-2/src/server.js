@@ -7,11 +7,10 @@ const mongodb = require("./database/connect.js");
 const moviesRoute = require("./routes/moviesRoute.js");
 const port = process.env.PORT || 8080;
 
-app
-    .use(bodyparser.json())
-    .use(cors({
-        origin: "http://localhost:8080",
-        // origin: "https://cse341-node-9dp6.onrender.com",
+app.use(bodyparser.json()).use(
+    cors({
+        // origin: "http://localhost:8080",
+        origin: "https://cse341-service2.onrender.com",
     })
 );
 
