@@ -5,7 +5,7 @@
     "description": "Api serving a list of movies and cinemas location",
     "version": "1.0.0"
   },
-  "host": "https://cse341-service-05oh.onrender.com",
+  "host": "cse341-service-05oh.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
