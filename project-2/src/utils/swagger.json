@@ -5,33 +5,83 @@
     "description": "Api serving a list of movies and cinemas location",
     "version": "1.0.0"
   },
-  "host": "cse341-service2.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "https",
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/movies": {
       "get": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "post": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "year": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                },
+                "cast": {
+                  "example": "any"
+                },
+                "directors": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "422": {
             "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/movies/{id}": {
       "get": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
         "parameters": [
           {
@@ -42,12 +92,21 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "put": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
         "parameters": [
           {
@@ -55,15 +114,57 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "year": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                },
+                "cast": {
+                  "example": "any"
+                },
+                "directors": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
           "422": {
             "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
         "parameters": [
           {
@@ -74,28 +175,30 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/cinemas": {
       "get": {
+        "tags": [
+          "Cinemas"
+        ],
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

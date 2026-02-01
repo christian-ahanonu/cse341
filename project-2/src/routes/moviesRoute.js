@@ -1,40 +1,62 @@
 const router = require("express").Router();
 const moviesController = require("../controllers/moviesControllers.js");
-const Utilities = require("../utils/helper.js");
 const { ValidationRules, validate } = require("../utils/movieValidator.js");
 
-// Get all contact route
-router.get("/movies", Utilities.handleErrors(moviesController.getAllMovies));
-
-// Get a single contact
+// Get all movies route
+// #swagger.tags=['Movies']
 router.get(
-    "/movies/:id",
-    Utilities.handleErrors(moviesController.getMoviesById)
+    "/",
+    moviesController.getAllMovies
 );
 
-// Add a contact
+// Get a single movie
+// #swagger.tags=['Movies']
+router.get(
+    "/:id",
+    moviesController.getMoviesById
+);
+
+// Add a movie
+// #swagger.tags=['Movies']
+/*
+ * #swagger.parameters['body'] = {
+ *   in: 'body',
+ *   description: 'Add new movie',
+ *   schema: { $ref: '#/definitions/Movie' }
+ * }
+ */
 router.post(
-    "/movies",
+    "/",
     ValidationRules(),
     validate,
-    Utilities.handleErrors(moviesController.createMovie)
+    moviesController.createMovie
 );
 
-// Update a contact
+// Update a movie
+// #swagger.tags=['Movies']
+/*
+ * #swagger.parameters['body'] = {
+ *   in: 'body',
+ *   description: 'Update an existing movie',
+ *   schema: { $ref: '#/definitions/Movie' }
+ * }
+ */
 router.put(
-    "/movies/:id",
+    "/:id",
     ValidationRules(),
     validate,
-    Utilities.handleErrors(moviesController.updateMovie)
+    moviesController.updateMovie
 );
 
-// Delete a contact
+// Delete a movie
+// #swagger.tags=['Movies']
 router.delete(
-    "/movies/:id",
-    Utilities.handleErrors(moviesController.deleteMovie)
+    "/:id",
+    moviesController.deleteMovie
 );
 
-// Get all cinemas route
-router.get("/cinemas", Utilities.handleErrors(moviesController.getAllCinemas));
+// Get all cinemas
+// #swagger.tags=['Cinemas']
+router.get("/cinemas", moviesController.getAllCinemas);
 
 module.exports = router;

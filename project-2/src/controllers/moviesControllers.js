@@ -1,82 +1,51 @@
-const mongodb = require('../database/connect.js');
-const objectId = require('mongodb').ObjectId;
+const mongodb = require("../database/connect.js");
+const objectId = require("mongodb").ObjectId;
 
 const getAllMovies = async (req, res) => {
+    //#swagger.tags=['Movies']
     try {
         const result = await mongodb
             .getDatabase()
             .db()
             .collection("movies")
-            .find()
-        ;
-        
-        const contacts = await result.toArray();
+            .find();
+
+        const movies = await result.toArray();
 
         res.status(200).json({
             message: "Movies retrieved successfully.",
-            data: contacts
+            data: movies,
         });
 
         // result.toArray().then((contacts) => {
         //     res.setHeader("content-type", "application/json");
         //     res.status(200).json(contacts);
         // });
-        
     } catch (error) {
         res.status(500).json({
             message: "An error occured while fetching movies",
-            error: error.message
-        })
-    }
-};
-
-const getAllCinemas = async (req, res) => {
-    try {
-        const result = await mongodb
-            .getDatabase()
-            .db()
-            .collection("cinemas")
-            .find()
-        ;
-        
-        const contacts = await result.toArray();
-
-        res.status(200).json({
-            message: "cinemas retrieved successfully.",
-            data: contacts
+            error: error.message,
         });
-
-        // result.toArray().then((contacts) => {
-        //     res.setHeader("content-type", "application/json");
-        //     res.status(200).json(contacts);
-        // });
-        
-    } catch (error) {
-        res.status(500).json({
-            message: "An error occured while fetching cinemas",
-            error: error.message
-        })
     }
 };
 
 const getMoviesById = async (req, res) => {
+    //#swagger.tags=['Movies']
     try {
-        const contactId = new objectId(req.params.id);
-    
+        const moviesId = new objectId(req.params.id);
+
         const result = await mongodb
             .getDatabase()
             .db()
             .collection("movies")
-            .findOne({ _id: contactId });
-        ;
-        
+            .findOne({ _id: moviesId });
         if (result) {
-            res.status(200).json(result)
+            res.status(200).json(result);
         } else {
             res.status(404).json({
-                message: "movie not found."
+                message: "movie not found.",
             });
-        };
+        }
 
         // result.toArray().then((contacts) => {
         //     res.setHeader("content-type", "application/json");
@@ -91,8 +60,9 @@ const getMoviesById = async (req, res) => {
 };
 
 const createMovie = async (req, res) => {
+    //#swagger.tags=['Movies']
     try {
-        const contactObject = {
+        const movieObject = {
             name: req.body.name,
             description: req.body.description,
             year: req.body.year,
@@ -102,39 +72,37 @@ const createMovie = async (req, res) => {
             directors: req.body.directors,
         };
 
-        // console.log(contactObject)
-    
+        // console.log(movieObject)
+
         const result = await mongodb
             .getDatabase()
             .db()
             .collection("movies")
-            .insertOne(contactObject);
-        ;
-    
+            .insertOne(movieObject);
         if (result.acknowledged) {
             res.status(201).json({
                 message: "movie created successfully.",
-                contactId: result.insertedId,
+                movieId: result.insertedId,
             });
         } else {
             res.status(500).json({
-                message: "An error occurred while creating the movie."
+                message: "An error occurred while creating the movie.",
             });
-        };
+        }
     } catch (error) {
         res.status(500).json({
             message: "An error occurred while creating the movie.",
-            error: error.message
+            error: error.message,
         });
-    };
+    }
 };
 
-
 const updateMovie = async (req, res) => {
+    //#swagger.tags=['Movies']
     try {
-        const contactId = new objectId(req.params.id);
+        const movieId = new objectId(req.params.id);
 
-        const contactObject = {
+        const movieObject = {
             name: req.body.name,
             description: req.body.description,
             year: req.body.year,
@@ -148,9 +116,7 @@ const updateMovie = async (req, res) => {
             .getDatabase()
             .db()
             .collection("movies")
-            .replaceOne({ _id: contactId }, contactObject);
-        ;
-        
+            .replaceOne({ _id: movieId }, movieObject);
         if (result.modifiedCount > 0) {
             res.status(204).send();
         } else {
@@ -164,22 +130,21 @@ const updateMovie = async (req, res) => {
             error: error.message,
         });
     }
-}
+};
 
 const deleteMovie = async (req, res) => {
+    //#swagger.tags=['Movies']
     try {
-        const contactId = new objectId(req.params.id);
+        const movieId = new objectId(req.params.id);
 
         const result = await mongodb
             .getDatabase()
             .db()
             .collection("movies")
-            .deleteOne({ _id: contactId });
-        ;
-        
+            .deleteOne({ _id: movieId });
         if (result.deletedCount > 0) {
             res.status(200).json({
-                message: "Movie deleted successfully."
+                message: "Movie deleted successfully.",
             });
         } else {
             res.status(404).json({
@@ -192,13 +157,35 @@ const deleteMovie = async (req, res) => {
             error: error.message,
         });
     }
-}
+};
+
+const getAllCinemas = async (req, res) => {
+    //#swagger.tags=['Cinemas']
+    try {
+        const result = await mongodb
+            .getDatabase()
+            .db()
+            .collection("cinemas")
+            .find();
+        const cinemas = await result.toArray();
+
+        res.status(200).json({
+            message: "cinemas retrieved successfully.",
+            data: cinemas,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "An error occured while fetching cinemas",
+            error: error.message,
+        });
+    }
+};
 
 module.exports = {
     getAllMovies,
-    getAllCinemas,
     getMoviesById,
     createMovie,
     updateMovie,
     deleteMovie,
+    getAllCinemas,
 };
