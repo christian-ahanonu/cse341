@@ -1,5 +1,5 @@
 module.exports = {
-    // If authenticated take me to the next page
+    // If authenticated, go to the next page
     ensureAuth: function (req, res, next) {
         if (req.isAuthenticated()) {
             return next()
