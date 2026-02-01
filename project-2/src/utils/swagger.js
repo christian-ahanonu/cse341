@@ -5,7 +5,9 @@ const doc = {
         title: "Movies Api",
         description: "Api serving a list of movies and cinemas location",
     },
-    host: "localhost:8080",
+    host: process.env.NODE_ENV === "production" 
+        ? "cse341-service2.onrender.com"
+        : "localhost:8080",
     schemes: ["http", "https"],
     basePath: "/",
     

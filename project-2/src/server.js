@@ -22,8 +22,8 @@ const { ensureGuest } = require("./middleware/auth.js");
 // MIDDLEWARE
 app.use(bodyparser.json()).use(
     cors({
-        origin: "https://cse341-service2.onrender.com",
         origin: "http://localhost:8080",
+        origin: "https://cse341-service2.onrender.com"
     }),
 );
 
