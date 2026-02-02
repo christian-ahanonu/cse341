@@ -2,14 +2,14 @@
   "swagger": "2.0",
   "info": {
     "title": "Movies Api",
-    "description": "Api serving a list of movies and cinemas location",
+    "description": "Api serving a list of movies and cinema locations",
     "version": "1.0.0"
   },
   "host": "cse341-service2.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/movies": {
