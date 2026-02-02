@@ -5,7 +5,7 @@
     "description": "Api serving a list of movies and cinemas location",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-service2.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
@@ -77,7 +77,7 @@
         }
       }
     },
-    "/movies/{id}": {
+    "/{id}": {
       "get": {
         "tags": [
           "Movies"
