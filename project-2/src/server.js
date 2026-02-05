@@ -17,7 +17,7 @@ const passport = require("passport");
 const session = require("express-session");
 let MongoStore = require("connect-mongo");
 MongoStore = MongoStore && MongoStore.default ? MongoStore.default : MongoStore;
-const { ensureGuest } = require("./middleware/auth.js");
+const { ensureGuest, ensureAuth } = require("./middleware/auth.js");
 
 // MIDDLEWARE
 app.use(bodyparser.json()).use(
@@ -56,13 +56,13 @@ app.get("/", ensureGuest, (req, res) => {
 app.use("/auth", utilities.handleErrors(loginRoute));
 
 // Dashboard route
-app.use("/dashboard", utilities.handleErrors(dashboardRoute));
+app.use("/dashboard", ensureAuth, utilities.handleErrors(dashboardRoute));
 
 // Movies route
-app.use("/movies", utilities.handleErrors(moviesRoute));
+app.use("/movies", ensureAuth, utilities.handleErrors(moviesRoute));
 
 // Swagger route
-app.use("/", require("./routes/swaggerRoute.js"));
+app.use("/", ensureAuth, require("./routes/swaggerRoute.js"));
 
 // Global error handling middleware
 app.use((err, req, res, next) => {

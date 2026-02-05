@@ -17,10 +17,6 @@ const getAllMovies = async (req, res) => {
             data: movies,
         });
 
-        // result.toArray().then((contacts) => {
-        //     res.setHeader("content-type", "application/json");
-        //     res.status(200).json(contacts);
-        // });
     } catch (error) {
         res.status(500).json({
             message: "An error occured while fetching movies",
@@ -47,10 +43,6 @@ const getMoviesById = async (req, res) => {
             });
         }
 
-        // result.toArray().then((contacts) => {
-        //     res.setHeader("content-type", "application/json");
-        //     res.status(200).json(contacts[0]);
-        // });
     } catch (error) {
         res.status(500).json({
             message: "An error occurred while fetching the movie.",

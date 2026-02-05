@@ -2,7 +2,7 @@ const router = require("express").Router();
 const moviesController = require("../controllers/moviesControllers.js");
 const { ValidationRules, validate } = require("../utils/movieValidator.js");
 
-// Get all movies route
+// Get all movies
 // #swagger.tags=['Movies']
 router.get(
     "/",
