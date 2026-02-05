@@ -77,7 +77,7 @@
         }
       }
     },
-    "/{id}": {
+    "/movies/{id}": {
       "get": {
         "tags": [
           "Movies"
