@@ -11,6 +11,7 @@ const mongodb = require("./database/connect.js");
 const moviesRoute = require("./routes/moviesRoute.js");
 const loginRoute = require("./routes/loginRoute.js");
 const dashboardRoute = require("./routes/dashboardRoute.js");
+const cinemasRoute = require("./routes/cinemasRoute.js");
 const utilities = require("./utils/helper.js");
 
 const passport = require("passport");
@@ -60,6 +61,9 @@ app.use("/dashboard", ensureAuth, utilities.handleErrors(dashboardRoute));
 
 // Movies route
 app.use("/movies", ensureAuth, utilities.handleErrors(moviesRoute));
+
+// Cinemas route
+app.use("/cinemas", ensureAuth, utilities.handleErrors(cinemasRoute));
 
 // Swagger route
 app.use("/", ensureAuth, require("./routes/swaggerRoute.js"));

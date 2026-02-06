@@ -4,17 +4,11 @@ const { ValidationRules, validate } = require("../utils/movieValidator.js");
 
 // Get all movies
 // #swagger.tags=['Movies']
-router.get(
-    "/",
-    moviesController.getAllMovies
-);
+router.get("/", moviesController.getAllMovies);
 
 // Get a single movie
 // #swagger.tags=['Movies']
-router.get(
-    "/:id",
-    moviesController.getMoviesById
-);
+router.get("/:id", moviesController.getMoviesById);
 
 // Add a movie
 // #swagger.tags=['Movies']
@@ -25,12 +19,7 @@ router.get(
  *   schema: { $ref: '#/definitions/Movie' }
  * }
  */
-router.post(
-    "/",
-    ValidationRules(),
-    validate,
-    moviesController.createMovie
-);
+router.post("/", ValidationRules(), validate, moviesController.createMovie);
 
 // Update a movie
 // #swagger.tags=['Movies']
@@ -41,22 +30,10 @@ router.post(
  *   schema: { $ref: '#/definitions/Movie' }
  * }
  */
-router.put(
-    "/:id",
-    ValidationRules(),
-    validate,
-    moviesController.updateMovie
-);
+router.put("/:id", ValidationRules(), validate, moviesController.updateMovie);
 
 // Delete a movie
 // #swagger.tags=['Movies']
-router.delete(
-    "/:id",
-    moviesController.deleteMovie
-);
-
-// Get all cinemas
-// #swagger.tags=['Cinemas']
-router.get("/cinemas", moviesController.getAllCinemas);
+router.delete("/:id", moviesController.deleteMovie);
 
 module.exports = router;
